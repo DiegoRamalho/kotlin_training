@@ -16,7 +16,6 @@ import java.util.*
  *
  */
 
-
 open class Shape
 class Rectangle : Shape()
 class Circle : Shape()
@@ -37,19 +36,16 @@ fun main() {
     println("------------- List/Set of Rectangles --------------")
     val rectangleList = listOf(rectangle) // SingletonList
     printShapeList(rectangleList)
-    printShapeMutableList(rectangleList.toMutableList())
 
     val rectangleMutableList = mutableListOf(rectangle) // ArrayList
     printShapeList(rectangleMutableList)
-    printShapeMutableList(rectangleMutableList.toMutableList())
+    printShapeMutableList(rectangleMutableList)
 
     val rectangleSet = setOf(rectangle, rectangle) // LinkedHashSet
     printShapeSet(rectangleSet)
-    printShapeMutableSet(rectangleSet.toMutableSet())
 
     val rectangleMutableSet = mutableSetOf(rectangle, rectangle) // LinkedHashSet
-    printShapeSet(rectangleMutableSet)
-    printShapeMutableSet(rectangleMutableSet.toMutableSet())
+    printShapeMutableSet(rectangleMutableSet)
 
     println("---------------------------------------------------")
     printFormatted("rectangleList\t==\trectangleMutableList?\t", rectangleList == rectangleMutableList)
@@ -60,7 +56,6 @@ fun main() {
     println("---------------- List/Set of Shapes ---------------")
     val shapeList = listOf(rectangle, circle)
     printShapeList(shapeList)
-    printShapeMutableList(shapeList.toMutableList())
 
     val shapeMutableList = mutableListOf(rectangle, circle)
     printShapeList(shapeMutableList)
@@ -72,6 +67,7 @@ fun main() {
 
     val shapeSet = setOf(rectangle, rectangle, circle, circle)
     printShapeSet(shapeSet)
+
     val shapeMutableSet = mutableSetOf(rectangle, rectangle, circle, circle)
     printShapeMutableSet(shapeMutableSet)
 
@@ -88,39 +84,35 @@ fun main() {
     printFormatted("shapeList.last()\t\t:\t", shapeList.last())
 
     val shuffled = shapeList.shuffled()
-    printFormatted("shapeList shuffled\t\t:\t", shuffled)
+    printFormatted("shapeList.shuffled()\t:\t", shuffled)
 
     val reversed = shapeList.asReversed()
-    printFormatted("reversed shapeList\t\t:\t", reversed)
+    printFormatted("shapeList.asReversed()\t:\t", reversed)
 
     val droppedFirst = shapeList.drop(1)
-    printFormatted("droppedFirst\t\t\t:\t", droppedFirst)
+    printFormatted("shapeList.drop(1)\t\t:\t", droppedFirst)
 
     val droppedLast = shapeList.dropLast(1)
-    printFormatted("droppedLast\t\t\t\t:\t", droppedLast)
+    printFormatted("shapeList.dropLast(1)\t:\t", droppedLast)
 
     val minus = shapeList - rectangle // or shapeList.minus(rectangle)
-    printFormatted("minus\t\t\t\t\t:\t", minus)
+    printFormatted("shapeList - rectangle\t:\t", minus)
 
     val plus = shapeList + rectangle // or shapeList.plus(rectangle)
-    printFormatted("plus\t\t\t\t\t:\t", plus)
+    printFormatted("shapeList + rectangle\t:\t", plus)
 
-    printFormatted("shuffled==shapeList\t\t?\t", shuffled == shapeList)
-    printFormatted("reversed==shapeList\t\t?\t", reversed == shapeList)
-    printFormatted("dropped==shapeList\t\t?\t", droppedFirst == shapeList)
-    printFormatted("minus==shapeList\t\t?\t", minus == shapeList)
-    printFormatted("plus==shapeList\t\t\t?\t", plus == shapeList)
+    printFormatted("shapeList\t\t\t\t:\t", shapeList)
 
     shapeMutableList.add(triangle)
     shapeMutableSet.remove(circle)
-    printShapeList(shapeMutableList)
-    printShapeSet(shapeMutableSet)
+
+    printFormatted("shapeMutableList\t\t:\t", shapeMutableList)
+    printFormatted("shapeMutableSet\t\t\t:\t", shapeMutableSet)
 
     println("\n------------------ List methods -------------------")
 
     printFormatted("shapeList[0]\t\t\t\t:\t", shapeList[0])
     printFormatted("shapeList.component1()\t\t:\t", shapeList.component1())
-    printFormatted("shapeList.first()\t\t\t:\t", shapeList.first())
     printFormatted("shapeList.firstOrNull()\t\t:\t", shapeList.firstOrNull { it is Triangle })
     printFormatted("shapeList.firstNotNullOf()\t:\t", shapeList.firstNotNullOf { if (it is Circle) triangle else null })
 
@@ -240,6 +232,16 @@ fun main() {
         .take(4)
 
     println("Result: ${lengthsSequence.toList()}")
+
+    val a = fun (s: Int) : Int{
+       if(s == 1) {
+           1
+       }
+       return 10
+    }
+    println(a(1))
+
+    println(a(2))
 }
 
 
